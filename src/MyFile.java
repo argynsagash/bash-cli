@@ -1,8 +1,13 @@
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class MyFile {
 
@@ -27,8 +32,14 @@ public class MyFile {
             else if (arr[0].equals("setmod")) setPermissions(arr[1], arr[2]);
             else if (arr[0].equals("cat")) printContent(arr[1]);
             else if (arr[0].equals("append")) appendFooter(arr[1]);
-            else if (arr[0].equals("bc")) createBackup(arr[1]);
-            else if (arr[0].equals("greplong")) printLongestWord(arr[1]);
+            else if (arr[0].equals("bc")) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 1; i < arr.length - 1; i++) {
+                    sb.append(arr[i] + " ");
+                }
+                sb.append(arr[arr.length - 1]);
+                createBackup(sb.toString());
+            } else if (arr[0].equals("greplong")) printLongestWord(arr[1]);
             else if (arr[0].equals("help")) help();
             else System.out.println("Wrong command. Please try to write -> help for more options");
         }
@@ -112,7 +123,34 @@ public class MyFile {
     // создает копию `path` в директорию `/tmp/${date}.backup` где, date - это дата в формате `dd-mm-yyyy`. `path`
     // может быть директорией или файлом. При директории, копируется весь контент. - bc
     public static void createBackup(String path) {
-        System.out.println("createBackup" + "->" + path);
+        GregorianCalendar curentTime = new GregorianCalendar();
+        curentTime.getTimeZone();
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String date = df.format(curentTime.getTime());
+        File source = new File(path);
+        File[] filesList = source.listFiles();
+        if (source.isFile()) {
+            File dest = new File(source.getParentFile() + "\\tmp" + "\\" + date + ".backup\\");
+            dest.mkdirs();
+            try {
+                Files.copy(source.toPath(), Path.of(source.getParentFile() + "\\tmp" + "\\" + date + ".backup\\" + source.getName()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (source.isDirectory()) {
+            File dest = new File(source.getPath() + "\\tmp" + "\\" + date + ".backup\\");
+            dest.mkdirs();
+            for (int i = 0; i < filesList.length; i++) {
+                try {
+                    Files.copy(filesList[i].toPath(), Path.of(path + "\\tmp" + "\\" + date + ".backup\\" + filesList[i].getName()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
     }
 
     // выводит самое длинное слово в файле - greplong
