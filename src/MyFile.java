@@ -68,7 +68,12 @@ public class MyFile {
 
     // выводит права для файла в формате `rwx` для текущего пользователя - readmod
     public static void printPermissions(String path) {
-        System.out.println("printPermissions" + "->" + path);
+        File currentDir = new File(path);
+        StringBuilder st = new StringBuilder();
+        if(currentDir.canRead()) st.append("r");
+        if(currentDir.canWrite()) st.append("w");
+        if(currentDir.canExecute()) st.append("x");
+        System.out.println(st);
     }
 
     // устанавливает права для файла `path` - setmod
