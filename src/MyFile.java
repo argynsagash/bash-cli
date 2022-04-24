@@ -61,7 +61,9 @@ public class MyFile {
 
     // выводит `директория` или `файл` в зависимости от типа `path` - define
     public static void define(String path) {
-        System.out.println("define" + "->" + path);
+        File currentDir = new File(path);
+        if(currentDir.isFile()) System.out.println("файл");
+        else if(currentDir.isDirectory()) System.out.println("директория");
     }
 
     // выводит права для файла в формате `rwx` для текущего пользователя - readmod
