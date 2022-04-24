@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MyFile {
@@ -35,7 +37,12 @@ public class MyFile {
 
     // выводит список всех файлов и директорий для `path` - ls
     public static void listDirectory(String path) {
-        System.out.println("listDirectory" + "->" + path);
+        File dir = new File(path); //path указывает на директорию
+        List<File> lst = new ArrayList<>();
+        for (File file : dir.listFiles()) {
+            if (file.isFile())
+                System.out.println(file);
+        }
     }
 
     // выводит список файлов с расширением `.py` в `path` - ls_py
