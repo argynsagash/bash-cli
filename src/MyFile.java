@@ -62,23 +62,29 @@ public class MyFile {
     // выводит `директория` или `файл` в зависимости от типа `path` - define
     public static void define(String path) {
         File currentDir = new File(path);
-        if(currentDir.isFile()) System.out.println("файл");
-        else if(currentDir.isDirectory()) System.out.println("директория");
+        if (currentDir.isFile()) System.out.println("файл");
+        else if (currentDir.isDirectory()) System.out.println("директория");
     }
 
     // выводит права для файла в формате `rwx` для текущего пользователя - readmod
     public static void printPermissions(String path) {
         File currentDir = new File(path);
-        StringBuilder st = new StringBuilder();
-        if(currentDir.canRead()) st.append("r");
-        if(currentDir.canWrite()) st.append("w");
-        if(currentDir.canExecute()) st.append("x");
-        System.out.println(st);
+        StringBuilder sb = new StringBuilder();
+        if (currentDir.canRead()) sb.append("r");
+        if (currentDir.canWrite()) sb.append("w");
+        if (currentDir.canExecute()) sb.append("x");
+        System.out.println(sb);
     }
 
     // устанавливает права для файла `path` - setmod
     public static void setPermissions(String path, String permissions) {
-        System.out.println("setPermissions" + "->" + path);
+        File currentDir = new File(path);
+        if (permissions.contains("r")) currentDir.setReadable(true);
+        else currentDir.setReadable(false);
+        if (permissions.contains("w")) currentDir.setWritable(true);
+        else currentDir.setWritable(false);
+        if (permissions.contains("x")) currentDir.setExecutable(true);
+        else currentDir.setExecutable(false);
     }
 
     // выводит контент файла - cat
