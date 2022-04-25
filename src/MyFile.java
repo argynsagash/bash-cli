@@ -43,11 +43,16 @@ public class MyFile {
 
     // выводит список всех файлов и директорий для `path` - ls
     public static void listDirectory(String path) {
-        File dir = new File(path); //path указывает на директорию
-        for (File file : dir.listFiles()) {
-            if (file.isFile())
-                System.out.println(file);
+        try {
+            File dir = new File(path); //path указывает на директорию
+            for (File file : dir.listFiles()) {
+                if (file.isFile())
+                    System.out.println(file);
+            }
+        }catch (Exception e){
+            System.out.println("Wrong Directory, try again");
         }
+
     }
 
     // выводит список файлов с расширением `.py` в `path` - ls_py
