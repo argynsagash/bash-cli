@@ -16,27 +16,25 @@ public class MyFile {
         while (flag) {
             String commandLine = scanner.nextLine();
             String[] arr = commandLine.split(" ");
-//            for (int i = 0; i < arr.length; i++) {
-//                System.out.println(arr[i]);
-//            }
 
             if (arr[0].equals("exit")) exit();
             else if (arr[0].equals("ls")) listDirectory(arr[1]);
-            else if (arr[0].equals("ls_py")) listPythonFiles(arr[1]);
-            else if (arr[0].equals("is_dir")) isDirectory(arr[1]);
-            else if (arr[0].equals("define")) define(arr[1]);
-            else if (arr[0].equals("readmod")) printPermissions(arr[1]);
-            else if (arr[0].equals("setmod")) setPermissions(arr[1], arr[2]);
-            else if (arr[0].equals("cat")) printContent(arr[1]);
-            else if (arr[0].equals("append")) appendFooter(arr[1]);
-            else if (arr[0].equals("bc")) {
+            else if (arr[0].equals("ls_py")) listPythonFiles(fileName(arr));
+            else if (arr[0].equals("is_dir")) isDirectory(fileName(arr));
+            else if (arr[0].equals("define")) define(fileName(arr));
+            else if (arr[0].equals("readmod")) printPermissions(fileName(arr));
+            else if (arr[0].equals("setmod")) {
                 StringBuilder sb = new StringBuilder();
-                for (int i = 1; i < arr.length - 1; i++) {
+                for (int i = 1; i < arr.length - 2; i++) {
                     sb.append(arr[i] + " ");
                 }
-                sb.append(arr[arr.length - 1]);
-                createBackup(sb.toString());
-            } else if (arr[0].equals("greplong")) printLongestWord(arr[1]);
+                sb.append(arr[arr.length - 2]);
+                setPermissions(sb.toString(), arr[arr.length-1]);
+            }
+            else if (arr[0].equals("cat")) printContent(fileName(arr));
+            else if (arr[0].equals("append")) appendFooter(fileName(arr));
+            else if (arr[0].equals("bc")) createBackup(fileName(arr));
+            else if (arr[0].equals("greplong")) printLongestWord(fileName(arr));
             else if (arr[0].equals("help")) help();
             else System.out.println("Wrong command. Please try to write -> help for more options");
         }
@@ -199,5 +197,14 @@ public class MyFile {
     public static void exit() {
         System.out.println("Goodbye");
         flag = false;
+    }
+
+    public static String fileName(String[] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < arr.length - 1; i++) {
+            sb.append(arr[i] + " ");
+        }
+        sb.append(arr[arr.length - 1]);
+        return sb.toString();
     }
 }
