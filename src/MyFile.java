@@ -77,6 +77,7 @@ public class MyFile {
         File currentDir = new File(path);
         if (currentDir.isFile()) System.out.println("файл");
         else if (currentDir.isDirectory()) System.out.println("директория");
+        else System.out.println("Error: Wrong directory or file try again");
     }
 
     // выводит права для файла в формате `rwx` для текущего пользователя - readmod
