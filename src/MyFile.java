@@ -12,6 +12,7 @@ public class MyFile {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        help();
 
         while (flag) {
             String commandLine = scanner.nextLine();
@@ -29,9 +30,8 @@ public class MyFile {
                     sb.append(arr[i] + " ");
                 }
                 sb.append(arr[arr.length - 2]);
-                setPermissions(sb.toString(), arr[arr.length-1]);
-            }
-            else if (arr[0].equals("cat")) printContent(fileName(arr));
+                setPermissions(sb.toString(), arr[arr.length - 1]);
+            } else if (arr[0].equals("cat")) printContent(fileName(arr));
             else if (arr[0].equals("append")) appendFooter(fileName(arr));
             else if (arr[0].equals("bc")) createBackup(fileName(arr));
             else if (arr[0].equals("greplong")) printLongestWord(fileName(arr));
