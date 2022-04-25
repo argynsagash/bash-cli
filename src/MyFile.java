@@ -82,15 +82,28 @@ public class MyFile {
 
     // выводит права для файла в формате `rwx` для текущего пользователя - readmod
     public static void printPermissions(String path) {
+
         File currentDir = new File(path);
         StringBuilder sb = new StringBuilder();
-        if (currentDir.canRead()) sb.append("r");
-        else sb.append("-");
-        if (currentDir.canWrite()) sb.append("w");
-        else sb.append("-");
-        if (currentDir.canExecute()) sb.append("x");
-        else sb.append("-");
-        System.out.println(sb);
+        if (currentDir.isFile()) {
+            if (currentDir.canRead()) sb.append("r");
+            else sb.append("-");
+            if (currentDir.canWrite()) sb.append("w");
+            else sb.append("-");
+            if (currentDir.canExecute()) sb.append("x");
+            else sb.append("-");
+            System.out.println(sb);
+        }
+        else if (currentDir.isDirectory()) {
+            if (currentDir.canRead()) sb.append("r");
+            else sb.append("-");
+            if (currentDir.canWrite()) sb.append("w");
+            else sb.append("-");
+            if (currentDir.canExecute()) sb.append("x");
+            else sb.append("-");
+            System.out.println(sb);
+        }
+        else System.out.println("Error: Wrong directory or file try again");
     }
 
     // устанавливает права для файла `path` - setmod
