@@ -67,7 +67,9 @@ public class MyFile {
     // выводит `true`, если `path` это директория, в других случаях `false` - id_dir
     public static void isDirectory(String path) {
         File currentDir = new File(path);
-        System.out.println(currentDir.isDirectory());
+        if(currentDir.isFile()) System.out.println(false);
+        else if (currentDir.isDirectory()) System.out.println(true);
+        else System.out.println("Error no such a directory");
     }
 
     // выводит `директория` или `файл` в зависимости от типа `path` - define
