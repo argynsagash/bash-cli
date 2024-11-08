@@ -1,6 +1,6 @@
 # myfile
 
-![Bash](https://ih1.redbubble.net/image.3460508448.1739/st,small,507x507-pad,600x600,f8f8f8.u1.jpg)
+![Bash](https://media.licdn.com/dms/image/C4D12AQGClXWJYiScxQ/article-cover_image-shrink_600_2000/0/1619495849962?e=2147483647&v=beta&t=EcQvLXo510juQG_ZmPxvN-L4EOw02DevP-rV3tPL2PE)
 
 Это программа с функционалом для работы с файлами, которая будет выполнять пользовательские команды.
 
