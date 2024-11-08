@@ -1,6 +1,6 @@
 # myfile
 
-![Bash](https://play-lh.googleusercontent.com/gA7IC3Yf97usrMQcJBabzMgV8ovx-uJ8004eRDY3u5SIoPP86MJooF8RSYv8zNRVkNI)
+![Bash](https://ih1.redbubble.net/image.3460508448.1739/st,small,507x507-pad,600x600,f8f8f8.u1.jpg)
 
 Это программа с функционалом для работы с файлами, которая будет выполнять пользовательские команды.
 
