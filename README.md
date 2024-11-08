@@ -1,6 +1,6 @@
 # myfile
 
-![Jusan Singularity](https://ucarecdn.com/02b8ff49-8f2b-4ce9-be84-7d4bdc6b9b67/)
+![Bash](https://play-lh.googleusercontent.com/gA7IC3Yf97usrMQcJBabzMgV8ovx-uJ8004eRDY3u5SIoPP86MJooF8RSYv8zNRVkNI)
 
 Это программа с функционалом для работы с файлами, которая будет выполнять пользовательские команды.
 
